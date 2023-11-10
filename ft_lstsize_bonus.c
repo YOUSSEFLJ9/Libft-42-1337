@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 22:21:20 by ymomen            #+#    #+#             */
-/*   Updated: 2023/11/10 11:39:20 by ymomen           ###   ########.fr       */
+/*   Created: 2023/11/07 00:30:30 by ymomen            #+#    #+#             */
+/*   Updated: 2023/11/07 00:33:55 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+int	ft_lstsize(t_list *lst)
 {
-	size_t	lens;
-	size_t	lend;
-	size_t	i;
+	t_list	*node;
+	int		coun_lst;
 
-	lens = ft_strlen(src);
-	if (!dst && dstsize == 0)
-		return (lens);
-	lend = ft_strlen(dst);
-	i = 0;
-	if (dstsize <= lend)
-		return (lens + dstsize);
-	while ((lend + i < dstsize - 1) && src[i])
+	node = lst;
+	coun_lst = 0;
+	while (node)
 	{
-		dst[lend + i] = src[i];
-		i++;
+		node = node->next;
+		coun_lst++;
 	}
-	dst[lend + i] = '\0';
-	return (lend + lens);
+	return (coun_lst);
 }

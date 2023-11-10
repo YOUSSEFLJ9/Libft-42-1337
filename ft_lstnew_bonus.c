@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 22:21:20 by ymomen            #+#    #+#             */
-/*   Updated: 2023/11/10 11:39:20 by ymomen           ###   ########.fr       */
+/*   Created: 2023/11/06 23:05:53 by ymomen            #+#    #+#             */
+/*   Updated: 2023/11/07 09:33:02 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+t_list	*ft_lstnew(void *content)
 {
-	size_t	lens;
-	size_t	lend;
-	size_t	i;
+	t_list	*node;
 
-	lens = ft_strlen(src);
-	if (!dst && dstsize == 0)
-		return (lens);
-	lend = ft_strlen(dst);
-	i = 0;
-	if (dstsize <= lend)
-		return (lens + dstsize);
-	while ((lend + i < dstsize - 1) && src[i])
+	node = (t_list *)malloc(sizeof(t_list));
+	if (!node)
 	{
-		dst[lend + i] = src[i];
-		i++;
+		free(node);
+		return (NULL);
 	}
-	dst[lend + i] = '\0';
-	return (lend + lens);
+	node->content = content;
+	node->next = NULL;
+	return (node);
 }

@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 22:21:20 by ymomen            #+#    #+#             */
-/*   Updated: 2023/11/10 11:39:20 by ymomen           ###   ########.fr       */
+/*   Created: 2023/11/07 03:36:16 by ymomen            #+#    #+#             */
+/*   Updated: 2023/11/07 13:04:52 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	lens;
-	size_t	lend;
-	size_t	i;
+	t_list	*new_head;
+	t_list	*node;
 
-	lens = ft_strlen(src);
-	if (!dst && dstsize == 0)
-		return (lens);
-	lend = ft_strlen(dst);
-	i = 0;
-	if (dstsize <= lend)
-		return (lens + dstsize);
-	while ((lend + i < dstsize - 1) && src[i])
+	new_head = NULL;
+	if (!lst || !f || !del)
+		return (NULL);
+	while (lst)
 	{
-		dst[lend + i] = src[i];
-		i++;
+		node = ft_lstnew(NULL);
+		if (!node)
+		{
+			ft_lstclear(&new_head, del);
+			new_head = NULL;
+			return (NULL);
+		}
+		node->content = (f)(lst->content);
+		ft_lstadd_back(&new_head, node);
+		lst = lst->next;
 	}
-	dst[lend + i] = '\0';
-	return (lend + lens);
+	return (new_head);
 }

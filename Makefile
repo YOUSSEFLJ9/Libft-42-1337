@@ -1,32 +1,42 @@
-SRC = ft_putchar_fd.c ft_putendl_fd.c ft_putstr_fd.c ft_putnbr_fd.c ft_strdup.c ft_itoa.c ft_striteri.c ft_putchar_fd.c ft_strmapi.c ft_bzero.c ft_strtrim.c ft_split.c ft_strjoin.c ft_substr.c ft_isalnum.c ft_strrchr.c ft_memcmp.c ft_strnstr.c ft_isalpha.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_memchr.c ft_memcpy.c ft_memmove.c ft_memset.c ft_strchr.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strncmp.c ft_strrchr.c ft_tolower.c ft_toupper.c ft_calloc.c ft_atoi.c
-BSRC = ft_lstnew.c ft_lstmap.c ft_lstiter.c ft_lstclear.c ft_lstdelone.c ft_lstadd_back.c ft_lstlast.c ft_lstsize.c ft_lstadd_front.c 
-OBJS = ${SRC:.c=.o}
-BOBJS = ${BSRC:.c=.o} 
-LIBC = ar -rcs
-FLAGS = -Wall -Wextra -Werror -g
-CC = cc
-INCS = .
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/11/08 08:58:01 by ymomen            #+#    #+#              #
+#    Updated: 2023/11/08 16:50:28 by ymomen           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+SRC =  ft_putchar_fd.c ft_strmapi.c ft_atoi.c ft_putendl_fd.c ft_strncmp.c ft_bzero.c ft_putnbr_fd.c ft_strnstr.c ft_calloc.c ft_putstr_fd.c ft_strrchr.c ft_isalnum.c  ft_split.c ft_strtrim.c ft_isalpha.c ft_strchr.c ft_substr.c ft_isascii.c ft_strdup.c ft_tolower.c ft_isdigit.c ft_memchr.c ft_striteri.c ft_toupper.c ft_isprint.c ft_memcmp.c ft_strjoin.c ft_itoa.c ft_memcpy.c ft_strlcat.c ft_memmove.c ft_strlcpy.c ft_memset.c ft_strlen.c
+SRB = ft_lstadd_front_bonus.c ft_lstclear_bonus.c ft_lstdelone_bonus.c ft_lstiter_bonus.c ft_lstlast_bonus.c ft_lstmap_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c ft_lstadd_back_bonus.c
+OBJ = $(SRC:.c=.o)
+BOB = $(SRB:.c=.o)
+LIB = ar -rcs
+CC = gcc
 RM = rm -f
+CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
-SO = libt.so
 
-.c.o:
-	${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I ${INCS}
+%.o : %.c
+	@$(CC) -c $(CFLAG) $< -o $@
 
-${NAME}: ${OBJS}
-		${LIBC} ${NAME} ${OBJS}
+all: $(NAME)
 
-so:
-	$(CC) -fPIC $(CFLAGS) $(SRC)
-	gcc -shared -o libft.so $(OBJ) 
-
-all: ${NAME}
+$(NAME) : $(OBJ)
+	@$(LIB) $(NAME) $(OBJ)
 
 clean:
-	@${RM} *.o
-bonus: ${BOBJS}
-		${LIBC} ${NAME} ${BOBJS}
+	@$(RM) *.o
+	
 fclean: clean
-		${RM} ${NAME} ${SO}
+	@$(RM) $(NAME)
 
 re: fclean all
+
+bonus: all ${BOB}
+	@$(LIB) $(NAME) $(BOB)
+	
+.PHONY : clean fclean all bonus
