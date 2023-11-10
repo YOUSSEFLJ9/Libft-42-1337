@@ -29,7 +29,7 @@ $(NAME) : $(OBJ)
 	@$(LIB) $(NAME) $(OBJ)
 
 clean:
-	@$(RM) *.o
+	@$(RM) $(OBJ)
 	
 fclean: clean
 	@$(RM) $(NAME)
