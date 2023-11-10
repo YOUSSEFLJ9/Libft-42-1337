@@ -6,7 +6,7 @@
 #    By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/08 08:58:01 by ymomen            #+#    #+#              #
-#    Updated: 2023/11/08 16:50:28 by ymomen           ###   ########.fr        #
+#    Updated: 2023/11/10 18:55:11 by ymomen           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
 
 %.o : %.c
-	@$(CC) -c $(CFLAG) $< -o $@
+	@$(CC) -c $(CFLAGS) $< -o $@
 
 all: $(NAME)
 
