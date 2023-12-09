@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lj9 <lj9@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 22:14:28 by ymomen            #+#    #+#             */
-/*   Updated: 2023/11/06 22:48:09 by ymomen           ###   ########.fr       */
+/*   Updated: 2023/12/09 17:01:15 by lj9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*check(void)
 	newstr = (char *)malloc(1 * sizeof(char));
 	if (!newstr)
 		return (NULL);
-	newstr[0] = '\0'; 
+	newstr[0] = '\0';
 	return (newstr);
 }
 

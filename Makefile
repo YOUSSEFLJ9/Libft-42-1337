@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+         #
+#    By: lj9 <lj9@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/08 08:58:01 by ymomen            #+#    #+#              #
-#    Updated: 2023/11/10 18:55:11 by ymomen           ###   ########.fr        #
+#    Updated: 2023/12/09 16:54:49 by lj9              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,24 +19,25 @@ CC = gcc
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
+HDR = libft.h
 
-%.o : %.c
-	@$(CC) -c $(CFLAGS) $< -o $@
+%.o : %.c $(HDR)
+	$(CC) -c $(CFLAGS) $< -o $@
 
 all: $(NAME)
 
 $(NAME) : $(OBJ)
-	@$(LIB) $(NAME) $(OBJ)
+	$(LIB) $(NAME) $(OBJ)
 
 clean:
-	@$(RM) $(OBJ)
+	$(RM) $(OBJ) $(BOB)
 	
 fclean: clean
-	@$(RM) $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 
 bonus: all ${BOB}
-	@$(LIB) $(NAME) $(BOB)
+	$(LIB) $(NAME) $(BOB)
 	
 .PHONY : clean fclean all bonus
